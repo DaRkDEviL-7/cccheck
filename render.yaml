@@ -1,0 +1,7 @@
+services:
+- type: web
+  name: cc_check
+  runtime: python
+  buildCommand: |
+    pip install -r requirements.txt
+  startCommand: gunicorn wsgi:application

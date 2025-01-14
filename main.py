@@ -14,6 +14,19 @@ def load_commands(dispatcher):
             module = imporlib.import_module(f"{command_dir}.{command_name}")
             handler_function = getattr(module, f"handle_{command_name}")
             dispatcher.add_handler(CommandHandler(command_name, handler_fuction))
+
+# Create a Flask app instance (or similar)
+from flask import Flask
+app = Flask(__name__)
+
+
+# For Gunicorn
+@app.route('/')
+def index():
+    # You might want to add a simple health check here
+    return 'Bot is running'
+
+
 #Main function
 def main():
     updater = Updater(BOT_TOKEN, use_context=True)
